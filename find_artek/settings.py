@@ -46,7 +46,7 @@ CAS_SERVER_URL = 'https://auth2.dtu.dk/dtu/'
 ALLOWED_HOSTS = [
     'find-artek.vezit.net',
     'find.artek.byg.dtu.dk',
-    'localhost'
+    'localhost',
 ]
 
 # Media url
@@ -64,7 +64,8 @@ INSTALLED_APPS = [
     'django_extensions',
     'django.contrib.gis',
     'publications',
-    'django_cas_ng'
+    'django_cas_ng',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

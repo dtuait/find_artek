@@ -31,6 +31,7 @@ urlpatterns = [
     
     # include the urls from the publications app
     path('publications/', include('publications.urls')),
+    # path('api/', include('api.urls')),
 
     path('login', django_cas_ng.views.LoginView.as_view(), name='cas_ng_login'),
     path('logout', django_cas_ng.views.LogoutView.as_view(), name='cas_ng_logout'),
