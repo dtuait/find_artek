@@ -8,7 +8,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
     const totalReportsNumber = document.getElementById('total-reports-number');
     
 
-    const apiEndpoint = '/publications/api/reports/';
+    const apiEndpoint = '/api/reports/';
+    // const apiEndpoint = '/publications/api/reports/';
 
     // check if get paramete 'topic' is present
     const urlParams = new URLSearchParams(window.location.search);
@@ -53,6 +54,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
 // ============
 async function main($my) {
     $my.myReportsClass.getReports($my.filter)
+    
+
 }
 
 // ============

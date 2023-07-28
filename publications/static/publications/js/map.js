@@ -22,7 +22,8 @@ async function main() {
     // To show the overlay
     loadingOverlay.style.display = 'flex';
 
-    const response = await fetch('/publications/api/feature/');
+    const response = await fetch('/api/features/');
+
     const featureData = await response.json();
 
     // To hide the overlay

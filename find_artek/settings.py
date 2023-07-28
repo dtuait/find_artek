@@ -66,6 +66,7 @@ INSTALLED_APPS = [
     'publications',
     'django_cas_ng',
     'rest_framework',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [

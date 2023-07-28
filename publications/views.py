@@ -164,6 +164,20 @@ class PersonsView(BaseView):
 
 
 
+class AuthorView(BaseView):
+    template_name = 'publications/author.html'
+
+    def get(self, request, person_id, **kwargs):
+        person = get_object_or_404(Person, pk=person_id)
+
+        context = {
+            'person': person,
+        }
+
+        context.update(self.get_context_data(**kwargs))
+
+        return render(request, self.template_name, context)
+
 
 
 

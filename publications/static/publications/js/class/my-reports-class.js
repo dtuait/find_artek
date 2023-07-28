@@ -45,21 +45,56 @@ class MyReportsClass {
 
         let url = this.defaultUrl;
 
-        // Check if a filter was provided
-        if (filter) {
-            // If 'topic' is in filter, append it to the url
-            if (filter.topic) {
-                url = `${this.defaultUrl}?topic=${filter.topic}`;
-            }
+        // // Check if a filter was provided
+        // if (filter) {
+        //     // If 'topic' is in filter, append it to the url
+        //     if (filter.topic) {
+        //         url = `${this.defaultUrl}?topic=${filter.topic}`;
+        //     }
 
-            // If 'personID' is in filter, append it to the url
-            if (filter.personId) {
-                url = `${this.defaultUrl}?person_id=${filter.personId}`;
-            }
-        }
+        //     // If 'personID' is in filter, append it to the url
+        //     if (filter.personId) {
+        //         url = `${this.defaultUrl}?person_id=${filter.personId}`;
+        //     }
+        // }
 
         // Fetch the data from the api
         const response = await fetch(url);
+        
+
+        const testResponse = await fetch('https://dtu.dk/api/v1/person/search', {
+            method: 'POST',
+            headers: {},
+            body: JSON.stringify({
+                "Pagination": {
+                    "Number": 1,
+                    "Size": 1
+                },
+                "Constraint": {
+                    "Text": "Anders Jørgensen",
+                    "ListMembership": null,
+                    "Types": [
+                        "Employee"
+                    ],
+                    "OrganizationUnitIds": [],
+                    "SearchTextType": 1,
+                    "ShowPrimaryOnly": true,
+                    "PersonIds": null
+                },
+                "Sort": {
+                    "Direction": "Ascending",
+                    "SortOn": "Surname",
+                    "LanguageCode": "Da"
+                },
+                "SitecoreContextUri": {
+                    "Database": "web",
+                    "Language": "da",
+                    "Path": "{FE04B7F2-2484-4816-8CCF-08D1DF3DD275}",
+                    "Site": "website"
+                }
+            }),                
+        }
+        );
 
         // Convert the response to json
         const reportData = await response.json();
@@ -199,7 +234,7 @@ class MyReportsClass {
 
             let authorNames = report.authors.map((author) => {
                 const authorLink = document.createElement('a');
-                authorLink.href = `/publications/author/#/`;
+                authorLink.href = `/publications/author/${author.pk}/`;
                 authorLink.innerText = `${author.first} ${author.last}`;
                 return authorLink.outerHTML;
             });

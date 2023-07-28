@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     const $ = {
         loadingOverlay: loadingOverlay,
         personsTableList: personsTableList,
-        apiPersonEndpoint: '/publications/api/persons/',   
+        apiPersonsEndpoint: '/api/persons/',   
     }
 
 
@@ -36,7 +36,9 @@ async function main($) {
     $.loadingOverlay.style.display = 'flex';
 
     // Fetch the data from the api
-    const response =  await fetch($.apiPersonEndpoint);
+    const response =  await fetch($.apiPersonsEndpoint);
+
+
 
     // Convert the response to json
     const personData = await response.json();
@@ -45,22 +47,40 @@ async function main($) {
 
 // Create a table row for each person
 personData.forEach((person) => {
+
+
+
+
     // Create table row
     const personRow = document.createElement('tr');
 
     // Create cell for the row
+
+
+
     const personCell = document.createElement('td');
 
-    // Create a link for the person
-    const personLink = document.createElement('a');
-    personLink.href = `/publications/person/${person.id}/`; // replace with the actual link
-    personLink.innerText = `${person.first} ${person.last}`;
+        // append picture
+        const personPicture = document.createElement('img');
 
-    // Append the link to the cell
-    personCell.appendChild(personLink);
+        const dtuSearchData = fetch(`/api/dtu/search/victor+reipur`)
 
-    // Append the cell to the row
-    personRow.appendChild(personCell);
+        dtuSearchData.then((data) => {
+            console.log(data)
+        });
+
+        // ---  a link to the person --- //
+        // Create a link for the person
+        const personLink = document.createElement('a');
+        personLink.href = `/publications/person/${person.id}/`; // replace with the actual link
+        personLink.innerText = `${person.first} ${person.last}`;
+
+        // Append the link to the cell
+        personCell.appendChild(personLink);
+
+        // Append the cell to the row
+        personRow.appendChild(personCell);
+        // ---  a link to the person --- //
 
     // Append the row to the table
     $.personsTableList.appendChild(personRow);

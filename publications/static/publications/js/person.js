@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
             loadingOverlay, 
             reportsTableList, 
             null,
-            '/publications/api/reports/'),
+            '/api/reports/'),
         filter: { personId: personId }
 
     }
